@@ -1,0 +1,31 @@
+# .github/workflows/scrape-tables.yml
+name: Scrape Table Sums with Playwright
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  scrape-tables:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        npm init -y
+        npm install playwright @playwright/test
+        
+    - name: Install Playwright browsers
+      run: npx playwright install
+    
+    - name: Run table scraping script - 22f2000506@ds.study.iitm.ac.in
+      run: node scrape-tables.js

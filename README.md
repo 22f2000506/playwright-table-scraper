@@ -1,0 +1,1 @@
+# playwright-table-scraper
